@@ -13,9 +13,9 @@
                 #slickModal="slick-carousel" 
                 [config]="slideConfig">
                 <div ngxSlickItem *ngFor="let platform of platforms">
-                    <span (click)="getPlans(platform.sku)">
+                    <figure (click)="getPlans(platform.sku)">
                         <img [src]="platform.imagem" alt="{{ platform.nome }}" width="100%" rel="preload">
-                    </span>
+                    </figure>
                 </div>
             </ngx-slick-carousel>
             <br>

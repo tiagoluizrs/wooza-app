@@ -105,13 +105,32 @@
         outline: none
         border:
             radius: 10px
-        box:
-            shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.8)
         overflow: hidden
-        img
-            border:
-                radius: 10px
-            outline: none
+
+/* Customização carousel - Principal */
+.carousel
+    .slick-list 
+        .slick-slide
+            &:first-child
+                text:
+                    align: right
+            &:nth-child(2)
+                text:
+                    align: center
+            &:last-child
+                text:
+                    align: left
+            figure
+                box:
+                    shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.8)
+                margin: 0
+                display: inline-block
+                max:
+                    width: 180px
+                img
+                    border:
+                        radius: 10px
+                    outline: none
 
 .slick-dotted.slick-slider
     margin:

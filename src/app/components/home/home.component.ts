@@ -139,19 +139,20 @@ export class HomeComponent implements OnInit {
       "slidesToShow": slidesToShow,
       "focusOnSelect": true,
       "responsive": [
+        // {
+        //   "breakpoint": 1000,
+        //   "settings": {
+        //     "centerPadding": '60px',
+        //     "slidesToShow": 3,
+        //     "centerMode": true,
+        //     "infinite": true,
+        //     "focusOnSelect": true
+        //   }
+        // },
         {
-          "breakpoint": 1000,
+          "breakpoint": 500,
           "settings": {
-            "centerPadding": '60px',
-            "slidesToShow": 3,
-            "centerMode": true,
-            "infinite": true,
-            "focusOnSelect": true
-          }
-        },
-        {
-          "breakpoint": 768,
-          "settings": {
+            "dots": true,
             "centerPadding": '60px',
             "slidesToShow": 1,
             "centerMode": true,
