@@ -1,0 +1,267 @@
+// Fontes
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
+@import 'variables.sass'
+
+// Alinhamento
+.center
+    text:
+        align: center
+
+// Cores
+.white
+    color: $white 
+
+// Estrutura
+*
+    font:
+        family: 'Roboto', sans-serif
+    transition: all ease-out 0.3s
+
+.main
+    float: left
+    width: 100%
+    .content
+        width: 100%
+        float: left
+        box:
+            sizing: border-box
+        padding: 
+            left: 15px
+            right: 15px
+    .content__fullvh
+        height: calc(100vh - 191px)
+    .content__fluid
+        width: 100%
+        float: left
+        box:
+            sizing: border-box
+        padding: 
+            left: 0
+            right: 0
+
+    .content__center
+        margin: 30px auto
+        float: none
+        display: table
+        padding:
+            left: 20px
+            right: 20px
+        max:
+            width: 400px
+        .vertical__align
+            display: table-cell
+            vertical-align: middle
+            float: none
+
+.row
+    float: left
+    width: 100%
+
+.col
+    float: left
+    padding: 0 15px
+    box:
+        sizing: border-box
+    &.md__12
+        width: 100%
+
+// Botões
+.button
+    border: none
+    color: $white 
+    padding: 15px 30px
+    font:
+        size: 1.1em
+    display: inline-block
+    line-height: 29px
+    text-decoration: none
+    &:hover
+        cursor: pointer
+    &--main
+        background:
+            color: $main_color
+    &--radius
+        border:
+            radius: 30px
+
+// Formulário
+.invalid-feedback 
+    position: absolute
+    div
+        color: $main_color
+        text:
+            indent: 5px
+        font:
+            size: 0.8em
+        margin:
+            top: 2px
+
+/* Padrões do carousel */
+.slick-list 
+    padding: 45px 60px !important
+    .slick-slide
+        cursor: pointer
+        margin: 0 20px
+        outline: none
+        border:
+            radius: 10px
+        box:
+            shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.8)
+        overflow: hidden
+        img
+            border:
+                radius: 10px
+            outline: none
+
+.slick-dotted.slick-slider
+    margin:
+        bottom: 0px !important
+
+.slick-dots 
+    position: relative !important
+    bottom: 0 !important
+    width: 90% !important
+    margin:
+        left: 5% !important
+        right: 5% !important
+    li 
+        &.slick-active
+            width: 45px !important
+            button
+                width: 45px !important
+                &::before
+                    width: 45px !important
+                    background:
+                        color: $white !important
+        width: 35px !important
+        height: 10px !important
+        button
+            width: 35px !important
+            height: 10px !important
+            &::before
+                background:
+                    color: $gray !important
+                border:
+                    radius: 30px !important
+                width: 35px !important
+                height: 10px !important
+                content: "" !important
+                opacity: 1 !important
+
+// Preloader
+.preloader
+    text:
+        align: center 
+    img
+        width: 40px
+        height: 40px
+    p
+        color: $white
+
+// Box
+.box
+    &__element
+        &--plan, &--purchase
+            display: inline-block
+            width: 100%
+            text:
+                align: center
+            padding: 10px 0
+            background:
+                color: #f3f3f3
+            color: $black
+        &--value
+            display: table
+            width: 100%
+            height: 150px
+            color: #fff
+            text:
+                align: center
+            background:
+                color: transparent
+        &--vertical
+            display: table-cell
+            vertical-align: middle
+        &--price
+            font:
+                size: 1.4em
+        &--purchase
+            &:hover, &:active
+                background:
+                    color: $medium_gray
+
+// States
+.hide
+    display: none
+.show
+    display: block
+
+// Spinner
+.linear-spinner 
+    overflow: hidden
+    width: 100%
+    height: 5px
+    background:
+        color: $spinner_bg1
+    margin: 0
+    .determinate
+        position: relative
+        max-width: 100%
+        height: 100%
+        transition: width 400ms ease-out 1s
+        -webkit:
+            transition: width 400ms ease-out 1s
+        -moz:
+            transition: width 400ms ease-out 1s
+        -o:
+            transition: width 400ms ease-out 1s
+        background:
+            color: $spinner_bg2
+    .indeterminate
+        position: relative
+        width: 100%
+        height: 100%
+        &:before
+            content: ''
+            position: absolute
+            height: 100%
+            background:
+                color: $spinner_bg2
+            animation: indeterminate_first 1.2s infinite ease-out
+        &:after
+            content: ''
+            position: absolute
+            height: 100%
+            background:
+                color: $spinner_bg3
+            animation: indeterminate_second 1.2s infinite ease-in
+
+@keyframes indeterminate_first 
+    0%
+        left: -100%
+        width: 100%
+
+    100%
+        left: 100%
+        width: 10%
+
+
+@keyframes indeterminate_second
+    0%
+        left: -150%
+        width: 100%
+
+    100%
+        left: 100%
+        width: 10%
+
+// ======================================= Responsividade =======================================
+// Estilos de estrutura
+@media screen and (min-width: $w_769px)
+    .col
+        &.lg__4
+            width: 33%
+        &.lg__6
+            width: 50%
+        &.lg__12
+            width: 100%

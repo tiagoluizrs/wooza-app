@@ -1,0 +1,71 @@
+@import '../variables.sass'
+
+header
+    width: 100%
+    float: left
+    background-color: $secondary_color
+    color: $white
+    z-index: 3
+    position: relative
+    .header__content
+        padding:
+            top: 15px
+            bottom: 15px
+        text:
+            align: center
+        .header__logo
+            display: inline-block
+            width: 140px
+            height: 47px
+            background:
+                image: url('/assets/img/logo.png')
+                repeat: no-repeat
+                position: center
+                size: contain
+
+footer
+    width: 100%
+    float: left
+    background-color: $secondary_color
+    color: $white
+    .footer__content
+        padding:
+            top: 20px
+            bottom: 20px
+        text:
+            align: center
+        .footer__logo
+            display: inline-block
+            width: 120px
+            height: 27px
+            background:
+                image: url('/assets/img/logo.png')
+                repeat: no-repeat
+                position: center
+                size: contain
+        .footer__help
+            width: 100%
+            .footer__help__title
+                margin:
+                    top: 15px
+                    bottom: 0
+                color: $white
+                font:
+                    weight: 300 
+                    size: .9em
+                text:
+                    transform: uppercase
+            .footer__help__link
+                color: $medium_gray
+                text:
+                    decoration: none
+                    transform: uppercase
+                font:
+                    weight: 300 
+                    size: .8em
+                &:visited, &:visited, &:visited
+                    color: $medium_gray
+                    text:
+                        decoration: none
+                    font:
+                        weight: 300

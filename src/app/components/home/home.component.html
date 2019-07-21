@@ -1,0 +1,58 @@
+<span class="shadow"></span>
+<main class="main">
+    <div class="content__fluid content__banner">
+        <div class="content__banner--overlay"></div>
+        <div class="content__banner--text-content">
+            <h1>Conheça uma de nossas platformos agora!</h1>
+            <h2>Escolha a plataforma que melhor se adequa à você e não deixe de contratar o platformo que cabe no seu bolso!</h2>
+        </div>
+    </div>
+    <div class="content__fluid content__darkgray">
+        <div class="platforms row">
+            <ngx-slick-carousel class="center carousel" 
+                #slickModal="slick-carousel" 
+                [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let platform of platforms">
+                    <span (click)="getPlans(platform.sku)">
+                        <img [src]="platform.imagem" alt="{{ platform.nome }}" width="100%" rel="preload">
+                    </span>
+                </div>
+            </ngx-slick-carousel>
+            <br>
+            <div [ngClass]="{'hide': hide_preload_main==true, 'show': hide_preload_main==false}" class="preloader show">
+                <img src="../../../assets/img/preloader.gif" alt="Carregando.">
+                <p>Carregando</p>
+            </div>
+        </div>
+
+        <div [ngClass]="{'hide': hide_plans==true, 'show': hide_plans==false}" class="hide carousel row" id="plans">
+            <h2 class="center white">Selecione um plano</h2>
+            <ngx-slick-carousel class="center carousel" 
+                #slickModalPlans="slick-carousel" 
+                [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let plan of plans; let i=index">
+                    <span class="box" [ngClass]="{'hide': plan.ativo==false, 'show': plan.ativo!=true}" >
+                        <span class="box__element">
+                            <span class="box__element--plan">Plano {{plan.franquia}}</span>
+                            <span class="box__element--value">
+                                <span class="box__element--vertical box__element--price">
+                                    R$ {{plan.valor}}
+                                    <ul *ngIf="KeyToFind(plan, 'aparelho')">
+                                        <li>{{plan.aparelho.nome}}</li>
+                                        <li>R$ {{plan.aparelho.valor}}</li>
+                                        <li>Em até {{plan.aparelho.numeroParcelas}} de R$ {{plan.aparelho.valorParcela}}</li>
+                                    </ul>
+                                </span>
+                            </span>
+                            <button type="button" class="button box__element--purchase" (click)="sendData(plan)">Adquirir</button>
+                        </span>
+                    </span>
+                </div>
+            </ngx-slick-carousel>
+            <div [ngClass]="{'hide': hide_preload_carousel==true, 'show': hide_preload_carousel==false}" class="preloader hide">
+                <img src="../../../assets/img/preloader.gif" alt="Carregando.">
+                <p>Carregando</p>
+            </div>
+        </div>
+    </div>
+</main>
