@@ -1,6 +1,7 @@
 <main class="main">
-    <div class="content content__center content__fullvh">
-            <div class="col lg__12 md__12 vertical__align">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-4 col-md-4 col-md-4 col-lg-4 col-lg-4 fset-0 vertical__align">
                 <p>Para começar a usar seus 7 dias grátis precisamos de alguns dados.</p>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <div class="form__group">
@@ -49,5 +50,6 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>   
+    </div>
 </main>

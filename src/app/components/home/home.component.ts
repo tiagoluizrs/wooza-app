@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
   platforms: Observable<Array<any>>;
   plans: Observable<Array<any>>;
   slideConfig: any;
-  hide_preload_main: boolean = false;
-  hide_preload_carousel: boolean = true;
+  hide_preload_platforms: boolean = false;
+  hide_preload_plans: boolean = true;
   hide_plans: boolean = true
 
   constructor(
@@ -63,13 +63,13 @@ export class HomeComponent implements OnInit {
     }))
     .subscribe((data: any) => {
       this.platforms = data["plataformas"];
-      this.hide_preload_main = true;
+      this.hide_preload_platforms = true;
     },(error) => {
         if(error == 'Número de tentativas excedido. Verifique sua conexão e tente novamente.'){
           alert(error);
         }
         this.platforms = null;
-        this.hide_preload_main = true;
+        this.hide_preload_platforms = true;
         console.log(`[[HomeComponent | getPlatforms]] >> Um erro ocorreu durante o carregamento das plataformas. Descrição do erro: ${error}`);
       }
     );
@@ -82,11 +82,12 @@ export class HomeComponent implements OnInit {
   
   // TODO - Adicionar descrição do método
   getPlans(platform:string): void{
+    this.plans = null;
+
     let headers = {
       'Content-Type': 'application/json'
     }
-    this.hide_preload_carousel = false
-    this.hide_plans = false
+    this.hide_preload_plans = false
 
     this.httpService.get(`https://demo3127152.mockable.io/${platform}`, headers)
     .pipe(retryWhen(_ => {
@@ -97,13 +98,15 @@ export class HomeComponent implements OnInit {
     .subscribe((data: any) => {
       this.plans = data["planos"];
       this.initializeCarousel(5);
-      this.hide_preload_carousel = true
+      this.hide_preload_plans = true
+      this.hide_plans = false
     },(error) => {
         if(error == 'Número de tentativas excedido. Verifique sua conexão e tente novamente.'){
           alert(error);
         }
         this.plans = null;
-        this.hide_preload_carousel = true
+        this.hide_preload_plans = true
+        this.hide_plans = false
         console.log(`[[HomeComponent | getPlatforms]] >> Um erro ocorreu durante o carregamento das plataformas. Descrição do erro: ${error}`);
       }
     );

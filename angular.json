@@ -30,6 +30,7 @@
             "styles": [
                 "src/styles.sass",
                 "src/assets/sass/normalize.sass",
+                "src/assets/sass/bootstrap-grid.sass",
                 "node_modules/slick-carousel/slick/slick.scss",
                 "node_modules/slick-carousel/slick/slick-theme.scss"
             ],

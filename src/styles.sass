@@ -6,6 +6,12 @@
 .center
     text:
         align: center
+.left
+    text:
+        align: left
+.right
+    text:
+        align: right
 
 // Cores
 .white
@@ -20,50 +26,8 @@
 .main
     float: left
     width: 100%
-    .content
-        width: 100%
-        float: left
-        box:
-            sizing: border-box
-        padding: 
-            left: 15px
-            right: 15px
     .content__fullvh
-        height: calc(100vh - 191px)
-    .content__fluid
-        width: 100%
-        float: left
-        box:
-            sizing: border-box
-        padding: 
-            left: 0
-            right: 0
-
-    .content__center
-        margin: 30px auto
-        float: none
-        display: table
-        padding:
-            left: 20px
-            right: 20px
-        max:
-            width: 400px
-        .vertical__align
-            display: table-cell
-            vertical-align: middle
-            float: none
-
-.row
-    float: left
-    width: 100%
-
-.col
-    float: left
-    padding: 0 15px
-    box:
-        sizing: border-box
-    &.md__12
-        width: 100%
+        height: calc(100vh - 154.66px)
 
 // Botões
 .button
@@ -75,11 +39,25 @@
     display: inline-block
     line-height: 29px
     text-decoration: none
+    outline: none
     &:hover
         cursor: pointer
+        color: $white
+        text:
+            decoration: none
+    &:visited, &:active
+        color: $white
+        text:
+            decoration: none
     &--main
         background:
             color: $main_color
+        &:visited
+            background:
+                color: $main_color
+        &:active, &:hover
+            background:
+                color: lighten($main_color, 15%)
     &--radius
         border:
             radius: 30px
@@ -88,7 +66,7 @@
 .invalid-feedback 
     position: absolute
     div
-        color: $main_color
+        color: $red
         text:
             indent: 5px
         font:
@@ -106,31 +84,6 @@
         border:
             radius: 10px
         overflow: hidden
-
-/* Customização carousel - Principal */
-.carousel
-    .slick-list 
-        .slick-slide
-            &:first-child
-                text:
-                    align: right
-            &:nth-child(2)
-                text:
-                    align: center
-            &:last-child
-                text:
-                    align: left
-            figure
-                box:
-                    shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.8)
-                margin: 0
-                display: inline-block
-                max:
-                    width: 180px
-                img
-                    border:
-                        radius: 10px
-                    outline: none
 
 .slick-dotted.slick-slider
     margin:
@@ -176,38 +129,6 @@
         height: 40px
     p
         color: $white
-
-// Box
-.box
-    &__element
-        &--plan, &--purchase
-            display: inline-block
-            width: 100%
-            text:
-                align: center
-            padding: 10px 0
-            background:
-                color: #f3f3f3
-            color: $black
-        &--value
-            display: table
-            width: 100%
-            height: 150px
-            color: #fff
-            text:
-                align: center
-            background:
-                color: transparent
-        &--vertical
-            display: table-cell
-            vertical-align: middle
-        &--price
-            font:
-                size: 1.4em
-        &--purchase
-            &:hover, &:active
-                background:
-                    color: $medium_gray
 
 // States
 .hide
@@ -273,14 +194,3 @@
     100%
         left: 100%
         width: 10%
-
-// ======================================= Responsividade =======================================
-// Estilos de estrutura
-@media screen and (min-width: $w_769px)
-    .col
-        &.lg__4
-            width: 33%
-        &.lg__6
-            width: 50%
-        &.lg__12
-            width: 100%
