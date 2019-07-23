@@ -10,23 +10,19 @@
     <div class="container-fluid content__darkgray">
         <div class="platforms row">
             <h2 class="center white">Selecione uma plataforma</h2>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" *ngFor="let platform of platforms">
-                        <figure (click)="getPlans(platform.sku)">
-                            <img [src]="platform.imagem" alt="{{ platform.nome }}" width="100%" rel="preload">
-                        </figure>
-                    </div>
+                <div class="center platform__item col-xs-12 col-sm-4 col-md-4 col-lg-4" *ngFor="let platform of platforms">
+                    <figure (click)="getPlans(platform.sku)">
+                        <img [src]="images[platform.sku]" alt="{{ platform.nome }}" width="100%" rel="preload">
+                    </figure>
                 </div>
-            </div>
             <br>
             <div [ngClass]="{'hide': hide_preload_platforms==true, 'show': hide_preload_platforms==false}" class="preloader show">
-                <img src="../../../assets/img/preloader.gif" alt="Carregando.">
+                <img src="assets/img/preloader.gif" alt="Carregando.">
                 <p>Carregando</p>
             </div>
         </div>
 
-        <div [ngClass]="{'hide': hide_plans==true, 'show': hide_plans==false}" class="hide carousel row" id="plans">
+        <div [ngClass]="{'hide': hide_plans==true, 'show': hide_plans==false}" class="hide row plans" id="planArea">
             <h2 class="center white">Selecione um plano</h2>
             <ngx-slick-carousel class="center carousel" 
                 #slickModalPlans="slick-carousel" 
@@ -36,22 +32,23 @@
                         <span class="box__element">
                             <span class="box__element--plan">Plano {{plan.franquia}}</span>
                             <span class="box__element--value">
-                                <span class="box__element--vertical box__element--price">
-                                    R$ {{plan.valor}}
-                                    <ul *ngIf="KeyToFind(plan, 'aparelho')">
-                                        <li>{{plan.aparelho.nome}}</li>
-                                        <li>R$ {{plan.aparelho.valor}}</li>
-                                        <li>Em até {{plan.aparelho.numeroParcelas}} de R$ {{plan.aparelho.valorParcela}}</li>
-                                    </ul>
+                                <span class="box__element--vertical box__element--info">
+                                    <span class="price">R$ {{plan.valor}}</span>
+                                    <span *ngIf="plan.aparelho !== undefined">
+                                        <ul class="center">
+                                            <li>Instalação do {{plan.aparelho.nome}} por R$ {{plan.aparelho.valor}}</li>
+                                        </ul>
+                                        <span class="parcel red" *ngIf="plan.aparelho.valorParcela != false">Em até {{plan.aparelho.numeroParcelas}}x de R$ {{plan.aparelho.valorParcela}}</span>
+                                    </span>
                                 </span>
                             </span>
-                            <button type="button" class="button box__element--purchase" (click)="sendData(plan)">Adquirir</button>
+                            <button (click)="sendData(plan)" type="button" class="button box__element--purchase">Adquirir</button>
                         </span>
                     </span>
                 </div>
             </ngx-slick-carousel>
             <div [ngClass]="{'hide': hide_preload_plans==true, 'show': hide_preload_plans==false}" class="preloader hide">
-                <img src="../../../assets/img/preloader.gif" alt="Carregando.">
+                <img src="assets/img/preloader.gif" alt="Carregando.">
                 <p>Carregando</p>
             </div>
         </div>

@@ -21,7 +21,8 @@ export class Step1Component implements OnInit {
   hide_preload_city: boolean = true;
   connection_lost: boolean = false;
   initDisabled: boolean = true;
-
+  planSelected: object = null;
+  
   constructor(
     private seoService: SeoService,
     private formBuilder: FormBuilder,
@@ -37,7 +38,19 @@ export class Step1Component implements OnInit {
     this.initDisabled = false;
 
     this.route.queryParams.subscribe(params => {
-      console.log(params['plan'])
+      this.planSelected = {
+        "sku": params.sku,
+        "franquia": params.franquia
+      }
+
+      if(params.aparelho_nome != undefined){
+        this.planSelected["aparelho"] = {
+          "nome": params.aparelho_nome,
+          "valor": params.aparelho_valor,
+          "numeroParcelas": params.aparelho_numeroParcelas,
+          "valorParcela": params.aparelho_valorParcela
+        }
+      }
     });
   }
 
@@ -101,11 +114,14 @@ export class Step1Component implements OnInit {
     }
 
     console.log({
-      'name': this.f.name.value,
-      'email': this.f.email.value,
-      'cpf': cpf,
-      'birthday': birthday,
-      'phone': this.f.phone.value
+      "dados_cliente":{
+        'name': this.f.name.value,
+        'email': this.f.email.value,
+        'cpf': cpf,
+        'birthday': birthday,
+        'phone': this.f.phone.value
+      },
+      "dados_plano": this.planSelected
     })
     this.router.navigate(['/cadastro-concluido'], { queryParams:  { step2_enabled: true }, skipLocationChange: true});
   }

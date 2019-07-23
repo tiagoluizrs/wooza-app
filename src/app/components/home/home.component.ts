@@ -6,6 +6,7 @@ import { retryWhen, flatMap } from 'rxjs/operators';
 // Serviços próprios do projeto
 import { SeoService } from '../../services/Seo/seo.service';
 import { HttpService } from '../../services/Http/http.service';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,9 @@ export class HomeComponent implements OnInit {
   hide_preload_platforms: boolean = false;
   hide_preload_plans: boolean = true;
   hide_plans: boolean = true
-
+  planAreaEl: HTMLElement = null
+  images: object = { "TBT01": "assets/img/poster_tablet.png", "CPT02": "assets/img/poster_pc.png", "WF03": "assets/img/poster_wifi.png" }
+  
   constructor(
     private seoService: SeoService,
     private httpService: HttpService,
@@ -33,7 +36,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getPlatforms();
-    this.plans = null
+    this.plans = null;
+    this.planAreaEl = document.querySelector("#planArea");
   }
 
   /*
@@ -55,7 +59,7 @@ export class HomeComponent implements OnInit {
       'Content-Type': 'application/json'
     }
 
-    this.httpService.get("https://demo3127152.mockable.io/platforms", headers)
+    this.httpService.get("http://private-59658d-celulardireto2017.apiary-mock.com/plataformas", headers)
     .pipe(retryWhen(_ => {
       return interval(3000).pipe(
         flatMap(count => count == 10 ? throwError('Número de tentativas excedido. Verifique sua conexão e tente novamente.') : of(count))
@@ -76,11 +80,6 @@ export class HomeComponent implements OnInit {
   }
 
   // TODO - Adicionar descrição do método
-  KeyToFind(obj, key){
-    return key in obj;  
-  }
-  
-  // TODO - Adicionar descrição do método
   getPlans(platform:string): void{
     this.plans = null;
 
@@ -88,8 +87,9 @@ export class HomeComponent implements OnInit {
       'Content-Type': 'application/json'
     }
     this.hide_preload_plans = false
+    this.hide_plans = false
 
-    this.httpService.get(`https://demo3127152.mockable.io/${platform}`, headers)
+    this.httpService.get(`http://private-59658d-celulardireto2017.apiary-mock.com/planos/${platform}`, headers)
     .pipe(retryWhen(_ => {
       return interval(3000).pipe(
         flatMap(count => count == 10 ? throwError('Número de tentativas excedido. Verifique sua conexão e tente novamente.') : of(count))
@@ -99,14 +99,16 @@ export class HomeComponent implements OnInit {
       this.plans = data["planos"];
       this.initializeCarousel(5);
       this.hide_preload_plans = true
-      this.hide_plans = false
+
+      setTimeout(() => {
+        this.planAreaEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 1000)
     },(error) => {
         if(error == 'Número de tentativas excedido. Verifique sua conexão e tente novamente.'){
           alert(error);
         }
         this.plans = null;
         this.hide_preload_plans = true
-        this.hide_plans = false
         console.log(`[[HomeComponent | getPlatforms]] >> Um erro ocorreu durante o carregamento das plataformas. Descrição do erro: ${error}`);
       }
     );
@@ -114,7 +116,26 @@ export class HomeComponent implements OnInit {
  
   // TODO -  Adicionar descrição do método
   sendData(plan_selected:any): void{
-    this.router.navigate(['/enviar-dados'], { queryParams:  { plan: plan_selected }, skipLocationChange: true});
+    let queryP: object;
+
+    queryP = {
+      "sku": plan_selected.sku,
+      "franquia": plan_selected.franquia,
+      "valor": plan_selected.valor
+    }
+
+    if(plan_selected.aparelho != undefined){
+      queryP["aparelho_nome"] = plan_selected.aparelho.nome;
+      queryP["aparelho_valor"] = plan_selected.aparelho.valor;
+      queryP["aparelho_numeroParcelas"] = plan_selected.aparelho.numeroParcelas;
+      if(plan_selected.aparelho.valorParcela != false){
+        queryP["aparelho_valorParcela"] = plan_selected.aparelho.valorParcela;
+      }else{
+        queryP["aparelho_valorParcela"] = plan_selected.aparelho.valor;
+      }
+    }
+
+    this.router.navigate(['/enviar-dados'], { queryParams:  queryP, skipLocationChange: false});
   }
 
   /* Esse é o método que detecta o carregamento do carousel. Nele selecionamos a plataforma 
@@ -142,16 +163,17 @@ export class HomeComponent implements OnInit {
       "slidesToShow": slidesToShow,
       "focusOnSelect": true,
       "responsive": [
-        // {
-        //   "breakpoint": 1000,
-        //   "settings": {
-        //     "centerPadding": '60px',
-        //     "slidesToShow": 3,
-        //     "centerMode": true,
-        //     "infinite": true,
-        //     "focusOnSelect": true
-        //   }
-        // },
+        {
+          "breakpoint": 968,
+          "settings": {
+            "dots": true,
+            "centerPadding": '60px',
+            "slidesToShow": 2,
+            "centerMode": true,
+            "infinite": true,
+            "focusOnSelect": true
+          }
+        },
         {
           "breakpoint": 500,
           "settings": {
