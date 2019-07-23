@@ -22,7 +22,8 @@
             </div>
         </div>
 
-        <div [ngClass]="{'hide': hide_plans==true, 'show': hide_plans==false}" class="hide row plans" id="planArea">
+        <div id="planArea"></div>
+        <div [ngClass]="{'hide': hide_plans==true, 'show': hide_plans==false}" class="hide row plans">
             <h2 class="center white">Selecione um plano</h2>
             <ngx-slick-carousel class="center carousel" 
                 #slickModalPlans="slick-carousel" 
