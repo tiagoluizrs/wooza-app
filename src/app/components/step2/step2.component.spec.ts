@@ -30,16 +30,16 @@ describe('Step2Component', () => {
 
   it('Verificando cabeçalho principal do envio com sucesso', () => {
     fixture.detectChanges();
-    expect(compiled.querySelector('h1').textContent).toContain('Falta pouco!');
+    expect(compiled.querySelector('h1').textContent).toContain('Obrigado!');
   });
 
   it('Verificando texto de envio com sucesso', () => {
     fixture.detectChanges();
-    expect(compiled.querySelector('p').textContent.trim()).toEqual('Em instantes você receberá seu login e senha através do e-mail cadastrado para aproveitar seus 7 dias grátis');
+    expect(compiled.querySelector('p').textContent.trim()).toEqual('Em breve um de nosso consultores entrará em contato com você!');
   });
 
   it('Verificando link de retorno para a home', () => {
     fixture.detectChanges();
-    expect(compiled.querySelector('a').textContent).toContain('Voltar para o início.');
+    expect(compiled.querySelector('a').textContent).toContain('Voltar para o início');
   });
 });

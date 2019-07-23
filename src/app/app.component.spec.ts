@@ -25,18 +25,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Assine wooza');
   }));
-
-  it('Verificando se h4 está ok', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h4').textContent).toContain('Ficou com alguma dúvida?');
-  });
-
-  it('Verificando texto do link de ajuda', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.footer__help__link').textContent).toContain('Acesse nossa ajuda');
-  });
 });

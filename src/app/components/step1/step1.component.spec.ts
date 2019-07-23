@@ -46,23 +46,22 @@ describe('Step1Component', () => {
     component.loginForm.controls['email'].setValue('tiagoluizribeirodasilva@gmail.com');
     component.loginForm.controls['cpf'].setValue('14722549702');
     component.loginForm.controls['birthday'].setValue('27061995');
-    component.loginForm.controls['city'].setValue('Rio de Janeiro');
-    component.loginForm.controls['state'].setValue('Rio de Janeiro');
+    component.loginForm.controls['phone'].setValue('21989889438');
 
     expect(component.loginForm.valid).toBeTruthy();
   })
 
-  it('Verificando texto do formulário de experimente por 7 dias.', () => {
+  it('Verificando texto do formulário de envio de dados.', () => {
     fixture.detectChanges();
-    expect(compiled.querySelector('p').textContent.trim()).toEqual('Para começar a usar seus 7 dias grátis precisamos de alguns dados.');
+    expect(compiled.querySelector('p').textContent.trim()).toEqual('Envie seus dados para entrarmos em contato com você.');
   });
 
   it('Verificando o formulário inválido', async() => {
     component.loginForm.controls['name'].setValue('');
     component.loginForm.controls['email'].setValue('');
     component.loginForm.controls['cpf'].setValue('');
-    component.loginForm.controls['state'].setValue('');
-    component.loginForm.controls['city'].setValue('');
+    component.loginForm.controls['birthday'].setValue('');
+    component.loginForm.controls['phone'].setValue('');
 
     expect(component.loginForm.valid).toBeFalsy();
   })

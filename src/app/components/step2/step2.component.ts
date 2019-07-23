@@ -29,11 +29,11 @@ export class Step2Component implements OnInit {
   que ocorre na página /enviar-dados.
   */
   validate_step2(): void{
-    this.route.queryParams.subscribe(params => {
-      if(!params['step2_enabled']){
-        this.router.navigateByUrl('/')
-      }
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   if(!params['step2_enabled']){
+    //     this.router.navigateByUrl('/')
+    //   }
+    // });
   }
 
   setMetaTag(): void{
