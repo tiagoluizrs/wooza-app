@@ -26,7 +26,7 @@ export class NotFoundComponent implements OnInit {
       {httpEquiv: 'Content-Type', content: 'text/html'},
       {httpEquiv: 'X-UA-Compatible', content: 'IE=edge,chrome=1, minimum-scale=1'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},   
-      {name: 'author', content: 'wooza'},
+      {name: 'author', content: 'Wooza'},
       {name: 'theme-color', content: '#333'},
       {name: 'robots', content: 'noindex'},
     ];  

@@ -63,9 +63,7 @@ export class AppComponent{
   }
 
   ngAfterViewInit() {
-    /* Aqui estamos desanexando a view após sofrer carregamento de qualquer detecção de mudanças,
-    tendo em vista que a aplicaçao é uma LP isso não é necessário e fazendo isso deixamos ela mais rápida.
-    */
+    /* Aqui estamos desanexando a view após sofrer carregamento de qualquer detecção de mudanças.*/
     this.cdr.detach();
   }
 }

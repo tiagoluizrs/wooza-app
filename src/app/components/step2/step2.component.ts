@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-// Serviço próprios do projeto
+// Serviço próprio do projeto
 import { SeoService } from '../../services/Seo/seo.service';
 
 @Component({
@@ -29,11 +29,11 @@ export class Step2Component implements OnInit {
   que ocorre na página /enviar-dados.
   */
   validate_step2(): void{
-    // this.route.queryParams.subscribe(params => {
-    //   if(!params['step2_enabled']){
-    //     this.router.navigateByUrl('/')
-    //   }
-    // });
+    this.route.queryParams.subscribe(params => {
+      if(!params['step2_enabled']){
+        this.router.navigateByUrl('/')
+      }
+    });
   }
 
   setMetaTag(): void{

@@ -85,20 +85,19 @@ export class Step1Component implements OnInit {
     Ao invés de fazermos 
     this.loginForm.controls.name.value
     
-    Com esse método precisaremos fazer apenas.
-    this.f.name.value
+    Com esse método precisaremos fazer apenas this.f.name.value
     A legibilidade fica bem melhor.
   */
   get f() { return this.loginForm.controls; }
 
   /*
-    Aqui é onde realizamos o submit (Lembrando que nesse momento não há um envio dele por método post).
+    Aqui é onde realizamos o submit.
 
     Os dados são capturados, alguns deles como birthday passam por uma formatação, mas nada difícil.
 
     Esse método captura os valores preenchidos no formulário e se todos os dados forem preenchidos
     corretamente ele estará apto para realizar o submit que levará o usuário para a pŕoxima página que é
-    a step2, uma página de mensagem onde o usuário terá a confirmação do cadastro.
+    a step2 (/cadastro-concluido), uma página de mensagem onde o usuário terá a confirmação do cadastro.
   */
   onSubmit() {
     let cpf: string = this.f.cpf.value;
@@ -131,18 +130,18 @@ export class Step1Component implements OnInit {
       {charset: 'UTF-8'},
       {httpEquiv: 'Content-Type', content: 'text/html'},
       {httpEquiv: 'X-UA-Compatible', content: 'IE=edge,chrome=1, minimum-scale=1'},
-      {name: 'description', content: 'Conheça um de nossos platformos agora!'},   
+      {name: 'description', content: 'Conheça uma de nossas platformas agora!'},   
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},   
-      {name: 'author', content: 'wooza'},
-      {name: 'keywords', content: 'Planos de internet 4G e Wi-fi'},
+      {name: 'author', content: 'Wooza'},
+      {name: 'keywords', content: 'Planos, Internet, 4G, Wi-fi'},
       {name: 'theme-color', content: '#333'},
       {name: 'application-name', content: 'Conheça os planos da wooza'},
       {name: 'robots', content: 'index,follow'},
       {property: 'og:url', content: "http://wooza-app.herokuapp.com/"},
       {property: 'og:title', content: "Conheça os planos da wooza - Enviar dados"},
-      {property: 'og:description', content: "Conheça um de nossos platformos agora!"},
+      {property: 'og:description', content: "Conheça uma de nossas platformas agora!"},
       {property: 'og:type', content: "website"},
-      {property: 'og:site_name', content: "Assina wooza Play"},
+      {property: 'og:site_name', content: "Contrate um plano na Wooza"},
       {property: 'og:locale', content: "pt_BR"},
     ];  
 

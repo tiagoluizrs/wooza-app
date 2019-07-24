@@ -41,9 +41,9 @@ export class HomeComponent implements OnInit {
   }
 
   /*
-    Método que usamos para pegar as plataformas que serão exibidas no carousel.
+    Método que usamos para pegar as plataformas que serão exibidas nas 3 boxes principais.
     Formato do dado retornado.
-    Um array com vários objetos dentro: [{"sku": "TBT01", "nome": "Tablet", "descricao": "Chip para..." ...}, ...]
+    Um objeto com vários objetos dentro: {"plataformas": [{"sku": "TBT01", "nome": "Tablet", "descricao": "Chip para..." ...}, ...]}
 
     O método possui o retryWhen que no caso de uma tentativa de requisição não ser bem-sucedida,
     ele tentará a cada 3 segundos requisitar novamente a solicitação, após 10 tentativas ele irá informar
@@ -51,8 +51,6 @@ export class HomeComponent implements OnInit {
 
     Obs: O número de tentativas que no caso são 10 não contam com a primeira tentativa, sendo o total de
     11 tentativas.
-
-    O mesmo método também pegará o primeiro file do slide e colocará sua imagem como imagem do banner principal.
   */
   getPlatforms(): void{
     let headers = {
@@ -79,7 +77,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // TODO - Adicionar descrição do método
+  // Método que carrega os planos da plataforma selecionada
   getPlans(platform:string): void{
     this.plans = null;
 
@@ -114,7 +112,8 @@ export class HomeComponent implements OnInit {
     );
   }
  
-  // TODO -  Adicionar descrição do método
+  /* Método que enviará o usuário para a tela de envio de dados, passando os dados do plano 
+  selecionado como argumentos na url*/
   sendData(plan_selected:any): void{
     let queryP: object;
 
@@ -138,8 +137,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/enviar-dados'], { queryParams:  queryP, skipLocationChange: false});
   }
 
-  /* Esse é o método que detecta o carregamento do carousel. Nele selecionamos a plataforma 
-    intermediária para ficar como a selecionada ao centro.
+  /* Esse é o método que detecta o carregamento do carousel.
   */
   slickInit(e): void{
     try{
@@ -194,18 +192,18 @@ export class HomeComponent implements OnInit {
       {charset: 'UTF-8'},
       {httpEquiv: 'Content-Type', content: 'text/html'},
       {httpEquiv: 'X-UA-Compatible', content: 'IE=edge,chrome=1, minimum-scale=1'},
-      {name: 'description', content: 'Conheça um de nossos platformos agora!'},   
+      {name: 'description', content: 'Conheça uma de nossas platformas agora!'},   
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},   
-      {name: 'author', content: 'wooza'},
-      {name: 'keywords', content: 'Planos de internet 4G e Wi-fi'},
+      {name: 'author', content: 'Wooza'},
+      {name: 'keywords', content: 'Planos, Internet, 4G, Wi-fi'},
       {name: 'theme-color', content: '#333'},
       {name: 'application-name', content: 'Conheça os planos da wooza'},
       {name: 'robots', content: 'index,follow'},
       {property: 'og:url', content: "http://wooza-app.herokuapp.com/"},
       {property: 'og:title', content: "Conheça os planos da wooza"},
-      {property: 'og:description', content: "Conheça um de nossos platformos agora!"},
+      {property: 'og:description', content: "Conheça uma de nossas platformas agora!"},
       {property: 'og:type', content: "website"},
-      {property: 'og:site_name', content: "Assina wooza Play"},
+      {property: 'og:site_name', content: "Contrate um plano na Wooza"},
       {property: 'og:locale', content: "pt_BR"},
     ];
 
