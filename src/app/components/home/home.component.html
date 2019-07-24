@@ -11,8 +11,9 @@
         <div class="platforms row">
             <h2 class="center white">Selecione uma plataforma</h2>
                 <div class="center platform__item col-xs-12 col-sm-4 col-md-4 col-lg-4" *ngFor="let platform of platforms">
-                    <figure (click)="getPlans(platform.sku)">
+                    <figure (click)="getPlans(platform)">
                         <img [src]="images[platform.sku]" alt="{{ platform.nome }}" width="100%" rel="preload">
+                        <figcaption>{{ platform.nome }}</figcaption>
                     </figure>
                 </div>
             <br>
@@ -24,7 +25,7 @@
 
         <div id="planArea"></div>
         <div [ngClass]="{'hide': hide_plans==true, 'show': hide_plans==false}" class="hide row plans">
-            <h2 class="center white">Selecione um plano</h2>
+            <h2 class="center white">{{platform_selected}} - Selecione um plano</h2>
             <ngx-slick-carousel class="center carousel" 
                 #slickModalPlans="slick-carousel" 
                 [config]="slideConfig">

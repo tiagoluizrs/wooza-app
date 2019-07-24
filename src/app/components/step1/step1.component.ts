@@ -40,7 +40,8 @@ export class Step1Component implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.planSelected = {
         "sku": params.sku,
-        "franquia": params.franquia
+        "franquia": params.franquia,
+        "plataforma": params.plataforma
       }
 
       if(params.aparelho_nome != undefined){

@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   platforms: Observable<Array<any>>;
   plans: Observable<Array<any>>;
   slideConfig: any;
+  platform_selected: string = null;
   hide_preload_platforms: boolean = false;
   hide_preload_plans: boolean = true;
   hide_plans: boolean = true
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   // Método que carrega os planos da plataforma selecionada
-  getPlans(platform:string): void{
+  getPlans(platform:any): void{
     this.plans = null;
 
     let headers = {
@@ -86,8 +87,9 @@ export class HomeComponent implements OnInit {
     }
     this.hide_preload_plans = false
     this.hide_plans = false
+    this.platform_selected = platform.nome
 
-    this.httpService.get(`http://private-59658d-celulardireto2017.apiary-mock.com/planos/${platform}`, headers)
+    this.httpService.get(`http://private-59658d-celulardireto2017.apiary-mock.com/planos/${platform.sku}`, headers)
     .pipe(retryWhen(_ => {
       return interval(3000).pipe(
         flatMap(count => count == 10 ? throwError('Número de tentativas excedido. Verifique sua conexão e tente novamente.') : of(count))
@@ -100,7 +102,7 @@ export class HomeComponent implements OnInit {
 
       setTimeout(() => {
         this.planAreaEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 1000)
+      }, 1500)
     },(error) => {
         if(error == 'Número de tentativas excedido. Verifique sua conexão e tente novamente.'){
           alert(error);
@@ -118,6 +120,7 @@ export class HomeComponent implements OnInit {
     let queryP: object;
 
     queryP = {
+      "plataforma": this.platform_selected,
       "sku": plan_selected.sku,
       "franquia": plan_selected.franquia,
       "valor": plan_selected.valor
