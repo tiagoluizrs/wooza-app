@@ -41,20 +41,20 @@ describe('Step1Component', () => {
     fixture.detectChanges();
   });
 
-  it('Verificando o formulário válido', async() => {
-    component.loginForm.controls['name'].setValue('Tiago Luiz');
-    component.loginForm.controls['email'].setValue('tiagoluizribeirodasilva@gmail.com');
-    component.loginForm.controls['cpf'].setValue('14722549702');
-    component.loginForm.controls['birthday'].setValue('27061995');
-    component.loginForm.controls['phone'].setValue('21989889438');
-
-    expect(component.loginForm.valid).toBeTruthy();
-  })
-
   it('Verificando texto do formulário de envio de dados.', () => {
     fixture.detectChanges();
     expect(compiled.querySelector('p').textContent.trim()).toEqual('Envie seus dados para entrarmos em contato com você.');
   });
+
+  it('Verificando o formulário válido', async() => {
+    component.loginForm.controls['name'].setValue('Luiz Antônio');
+    component.loginForm.controls['email'].setValue('email@gmail.com');
+    component.loginForm.controls['cpf'].setValue('14669662031');
+    component.loginForm.controls['birthday'].setValue('27061995');
+    component.loginForm.controls['phone'].setValue('21996473827');
+
+    expect(component.loginForm.valid).toBeTruthy();
+  })
 
   it('Verificando o formulário inválido', async() => {
     component.loginForm.controls['name'].setValue('');

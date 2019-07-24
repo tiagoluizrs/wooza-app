@@ -15,7 +15,7 @@ import {
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent{
-  title = 'Assine wooza'; 
+  title = 'Wooza - Contrate um plano'; 
   hide_loading = false;
 
   constructor(

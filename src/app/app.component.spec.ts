@@ -23,6 +23,6 @@ describe('AppComponent', () => {
   it(`Verificando título do app'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Assine wooza');
+    expect(app.title).toEqual('Wooza - Contrate um plano');
   }));
 });
